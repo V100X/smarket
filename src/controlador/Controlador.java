@@ -22,9 +22,10 @@ public class Controlador {
 
     public void RegistrarUsuario(String nombre, int contra, String num_tlf, String credito){
         
-         conectar();
-         ResultSet rs = null;
          Producto pr;
+
+         conectar();
+         ResultSet rs = null;         
 
          try {         
              
@@ -39,8 +40,8 @@ public class Controlador {
                      JOptionPane.showMessageDialog(null, "Nombre de usuario existente.");
 
                 } else {
-                    // INSERTAR NUEVO USUARIO
 
+                    // INSERTAR NUEVO USUARIO
                     PreparedStatement pst;
                     pst = conexion.prepareStatement("INSERT INTO usuarios (nombre, contra, num_tlf, credito) VALUES (?,?,?,?)");
                     pst.setString(1, nombre);
@@ -63,21 +64,22 @@ public class Controlador {
                     JOptionPane.showMessageDialog(null, "Usuario creado correctamente");
                 }
       
-        } catch (SQLException ex) {
-         Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (SQLException ex) {
             
-             JOptionPane.showMessageDialog(null, "Error al crear el nuevo usuario.");
-        }
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al crear el nuevo usuario.");
+         }
   
     }  
     
     
     public int IniciarSesion(String nombre, int contra){
         
-        conectar();
-         ResultSet rs = null;
          Producto pr;
          int id=0;
+
+         conectar();
+         ResultSet rs = null;         
 
          try {         
              
@@ -96,23 +98,25 @@ public class Controlador {
                     JOptionPane.showMessageDialog(null,"Usuario inexistente");
                 }
       
-        } catch (SQLException ex) {
-         Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
-            
-             JOptionPane.showMessageDialog(null, "Error al crear el nuevo usuario.");
-        }
-         return 0;
+         } catch (SQLException ex) {
+
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al crear el nuevo usuario.");
+         }
+
+        return 0;
     }
     
  
     
     public ArrayList getUserInfo(int id){   
         
-         conectar();
-         ResultSet rs = null;
          ArrayList<String> usuInfo = new ArrayList<>();
+
+         conectar();
+         ResultSet rs = null;         
          
-             try {         
+         try {         
              
             PreparedStatement pst = conexion.prepareStatement("SELECT * FROM usuarios WHERE id = ?"); 
             pst.setInt(1, id);
@@ -123,11 +127,12 @@ public class Controlador {
                 usuInfo.add(rs.getString("num_tlf"));
                 usuInfo.add( rs.getString("credito"));           
                 
-             } catch (SQLException ex) {
-            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (SQLException ex) {
             
-             JOptionPane.showMessageDialog(null, "Error al obtener la información.");
-        }
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al obtener la información.");
+         }
+
         return usuInfo;
     }
     
@@ -158,13 +163,13 @@ public class Controlador {
                 apr.setProd(pr);
             }
         
-             } catch (SQLException ex) {
-            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (SQLException ex) {
             
-             JOptionPane.showMessageDialog(null, "Error al cargar tabla.");
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al cargar tabla.");
         }
          
-         return apr;
+        return apr;
     }
     
 
@@ -196,13 +201,13 @@ public class Controlador {
                 apr.setProd(pr);
             }
         
-             } catch (SQLException ex) {
-            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (SQLException ex) {
             
-             JOptionPane.showMessageDialog(null, "Error al cargar tabla.");
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al cargar tabla.");
         }
          
-         return apr;
+        return apr;
     }
     
     
@@ -218,7 +223,7 @@ public class Controlador {
             pst.setInt(2, idProd);
             pst.execute();       
         
-             } catch (SQLException ex) {
+         } catch (SQLException ex) {
             //Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
             JOptionPane.showMessageDialog(null, "Este producto ya se encuentra entre tus favoritos.");
         }
@@ -238,7 +243,7 @@ public class Controlador {
             pst.setInt(2, idProd);
             pst.execute();       
         
-             } catch (SQLException ex) {
+         } catch (SQLException ex) {
             //Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
             JOptionPane.showMessageDialog(null, "Este producto no se encuentra entre tus favoritos.");
         }
@@ -271,22 +276,23 @@ public class Controlador {
                 apr.setProd(pr);
             }
 
-             } catch (SQLException ex) {
-            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (SQLException ex) {
             
-             JOptionPane.showMessageDialog(null, "Error al cargar tabla.");
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al cargar tabla.");
         }
          
-         return apr;
+        return apr;
     }
     
     
     
     public ArrayList getSecciones(){
-        
-         conectar();
-         ResultSet rs = null;
+         
          ArrayList<String> secc = new ArrayList<>();
+
+         conectar();
+         ResultSet rs = null;         
              
          try {         
              
@@ -298,13 +304,13 @@ public class Controlador {
                     secc.add(rs.getString("seccion"));
             }
         
-             } catch (SQLException ex) {
-            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (SQLException ex) {
             
-             JOptionPane.showMessageDialog(null, "Error al cargar tabla.");
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al cargar tabla.");
         }
          
-         return secc;
+        return secc;
     }
     
     
@@ -335,13 +341,13 @@ public class Controlador {
                 apr.setProd(pr);
             }
         
-             } catch (SQLException ex) {
-            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (SQLException ex) {
             
-             JOptionPane.showMessageDialog(null, "Error al cargar tabla.");
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al cargar tabla.");
         }
          
-         return apr;
+        return apr;
     }
        
         
@@ -374,11 +380,12 @@ public class Controlador {
                }
                
                
-             } catch (SQLException ex) {
+            } catch (SQLException ex) {
 
-                    Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
-                    JOptionPane.showMessageDialog(null, "Error al insertar nueva lista.");
-             }
+                Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
+                JOptionPane.showMessageDialog(null, "Error al insertar nueva lista.");
+            }
+
             return idList;
         }
         
@@ -391,27 +398,27 @@ public class Controlador {
          conectar();
          ResultSet rs= null;
              
-       try {         
+            try {         
 
-           for ( int x = 0; x < idList.size(); x++){
-    
-                PreparedStatement pst = conexion.prepareStatement("SELECT titulo FROM listas WHERE id = ?"); 
-                pst.setInt(1, idList.get(x));
-                rs= pst.executeQuery();
-            
-               rs.next();
+                for ( int x = 0; x < idList.size(); x++){
+        
+                    PreparedStatement pst = conexion.prepareStatement("SELECT titulo FROM listas WHERE id = ?"); 
+                    pst.setInt(1, idList.get(x));
+                    rs= pst.executeQuery();
                 
-                    titulos.add(rs.getString("titulo"));
-                
-           }    
+                    rs.next();
+                    
+                        titulos.add(rs.getString("titulo"));                    
+                }    
 
-                
-             } catch (SQLException ex) {
+                    
+            } catch (SQLException ex) {
+
                 Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Error al cargar tabla.");
-        }
+            }
         
-        return titulos;
+         return titulos;
         }
         
         
@@ -451,32 +458,29 @@ public class Controlador {
                         pr.setImg(rs2.getString("img"));
                         pr.setUds(rs.getInt("uds"));
 
-                        apr.setProd(pr);
-                    
-                      
+                        apr.setProd(pr);   
             }
                      
         
-             } catch (SQLException ex) {
+         } catch (SQLException ex) {
+
             Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
-            
-             JOptionPane.showMessageDialog(null, "Error al cargar tabla.");
+            JOptionPane.showMessageDialog(null, "Error al cargar tabla.");
         }
          
-         return apr;
+        return apr;
     }
               
         
         public boolean isSharedList(int cBoxPos, int idUsu){
         
-        boolean sharedList = false;
-        
+         boolean sharedList = false;        
          ArrayList<Integer> idList = getIdList(idUsu);
                  
          conectar();
          ResultSet rs= null;
              
-       try {
+         try {
     
                 PreparedStatement pst = conexion.prepareStatement("SELECT id_usu FROM usu_list WHERE id_list = ?"); 
                 pst.setInt(1, idList.get(cBoxPos));
@@ -487,11 +491,12 @@ public class Controlador {
                     sharedList = true;
                 }
                 
-             } catch (SQLException ex) {
+         } catch (SQLException ex) {
                 Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Error al cargar tabla.");
-        }
-        return sharedList;
+         }
+
+         return sharedList;
         }
         
         
@@ -515,16 +520,17 @@ public class Controlador {
             
             fecha = rs.getString("fecha_envio");
             
-             } catch (SQLException ex) {
+         } catch (SQLException ex) {
             Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
-        }
+         }
+
          return fecha;
         }
         
         
         public void InsertProdList(int idUsu, int cBoxPos, int idProd, int uds){
         
-        ArrayList<Integer> idList = getIdList(idUsu);
+         ArrayList<Integer> idList = getIdList(idUsu);
         
          conectar();
          ResultSet rs = null;
@@ -537,10 +543,10 @@ public class Controlador {
             pst.setInt(3, uds);
             pst.execute();       
         
-             } catch (SQLException ex) {
+         } catch (SQLException ex) {
             Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
             JOptionPane.showMessageDialog(null, "No se ha podido añadir el producto a lista.");
-        }
+         }
         }
         
         
@@ -558,10 +564,10 @@ public class Controlador {
             pst.setInt(2, idProd);
             pst.execute();       
         
-             } catch (SQLException ex) {
+         } catch (SQLException ex) {
             //Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
             JOptionPane.showMessageDialog(null, "Este producto no se encuentra en la lista.");
-        }
+         }
         }
         
         
@@ -579,10 +585,11 @@ public class Controlador {
             pst.setInt(2, idList.get(cBoxPos));
             pst.executeUpdate();         
         
-             } catch (SQLException ex) {
+         } catch (SQLException ex) {
+
             Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
             JOptionPane.showMessageDialog(null, "No se ha podido actualizar el valor de la  lista.");
-        }
+         }
         }
         
         
@@ -646,6 +653,7 @@ public class Controlador {
                     Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
                     JOptionPane.showMessageDialog(null, "Error al insertar nueva lista.");
              }
+
             return idListAdmin;
         }
         
@@ -659,9 +667,9 @@ public class Controlador {
          conectar();
          ResultSet rs= null;
              
-       try {         
+         try {         
 
-           for ( int x = 0; x < idListAdmin.size(); x++){
+            for ( int x = 0; x < idListAdmin.size(); x++){
                 // OBTENER EL NOMBRE DE LAS LISTAS DEL USUARIO QUE HA INICIADO SESIÓN
                 PreparedStatement pst = conexion.prepareStatement("SELECT titulo FROM listas WHERE id = ?"); 
                 pst.setInt(1, idListAdmin.get(x));
@@ -672,14 +680,15 @@ public class Controlador {
                     titulos.add(rs.getString("titulo"));
                 }
                 
-           }    
+            }    
          
-          } catch (SQLException ex) {
+         } catch (SQLException ex) {
 
-                    Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
-                    JOptionPane.showMessageDialog(null, "Error al insertar nueva lista.");
-             }
-            return titulos;
+            Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al insertar nueva lista.");
+         }
+
+         return titulos;
         }
         
         
@@ -698,10 +707,10 @@ public class Controlador {
             
             JOptionPane.showMessageDialog(null, "Lista eliminada correctamente.");
         
-             } catch (SQLException ex) {
+         } catch (SQLException ex) {
             //Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
             JOptionPane.showMessageDialog(null, "Este producto no se encuentra en la lista.");
-        }
+         }
         
         }
         
@@ -712,30 +721,30 @@ public class Controlador {
          ArrayList<Integer> idListAdmin = getIdListAdmin(idUsu);
          ArrayList<String> usuarios = new ArrayList<>();
         
-        conectar();
+         conectar();
          ResultSet rs, rs2 = null;
          
-             try {    
-                    PreparedStatement pst = conexion.prepareStatement("SELECT id_usu  FROM usu_list WHERE id_list= ?"); 
-                    pst.setInt(1, idListAdmin.get(cBoxPos));
-                    rs = pst.executeQuery();
-            
-                    while (rs.next()){
+         try {    
+                PreparedStatement pst = conexion.prepareStatement("SELECT id_usu  FROM usu_list WHERE id_list= ?"); 
+                pst.setInt(1, idListAdmin.get(cBoxPos));
+                rs = pst.executeQuery();
+        
+                while (rs.next()){
 
-                    PreparedStatement pst2 = conexion.prepareStatement("SELECT nombre  FROM usuarios WHERE id= ?"); 
-                    pst2.setInt(1, rs.getInt("id_usu"));
-                    rs2 = pst2.executeQuery();
-                    
-                    rs2.next();
-                    usuarios.add(rs2.getString("nombre"));
-                    
-                    }
-                    
-             } catch (SQLException ex) {
+                PreparedStatement pst2 = conexion.prepareStatement("SELECT nombre  FROM usuarios WHERE id= ?"); 
+                pst2.setInt(1, rs.getInt("id_usu"));
+                rs2 = pst2.executeQuery();
+                
+                rs2.next();
+                usuarios.add(rs2.getString("nombre"));
+                
+                }
+                
+         } catch (SQLException ex) {
 
-                    Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
-                    JOptionPane.showMessageDialog(null, "Error al insertar nueva lista.");
-             }
+                Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
+                JOptionPane.showMessageDialog(null, "Error al insertar nueva lista.");
+         }
          
          return usuarios;
         }
@@ -748,50 +757,50 @@ public class Controlador {
          conectar();
          ResultSet rs = null;
          
-             try {    
-                    PreparedStatement pst = conexion.prepareStatement("SELECT id FROM usuarios WHERE nombre = ?"); 
-                    pst.setString(1, nomUsu);
-                    rs = pst.executeQuery();
-            
-                    rs.next();
-                    
-                    PreparedStatement pst2 = conexion.prepareStatement("INSERT INTO usu_list (id_usu, id_list) VALUES (?,?)"); 
-                    pst2.setInt(1, rs.getInt("id"));
-                    pst2.setInt(2, idListAdmin.get(cBoxPos));
-                    pst2.execute();  
+         try {    
+                PreparedStatement pst = conexion.prepareStatement("SELECT id FROM usuarios WHERE nombre = ?"); 
+                pst.setString(1, nomUsu);
+                rs = pst.executeQuery();
         
-             } catch (SQLException ex) {
+                rs.next();
+                
+                PreparedStatement pst2 = conexion.prepareStatement("INSERT INTO usu_list (id_usu, id_list) VALUES (?,?)"); 
+                pst2.setInt(1, rs.getInt("id"));
+                pst2.setInt(2, idListAdmin.get(cBoxPos));
+                pst2.execute();  
+    
+         } catch (SQLException ex) {
 
-                    Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
-                    JOptionPane.showMessageDialog(null, "Usuario no existe.");
-             }
+                Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
+                JOptionPane.showMessageDialog(null, "Usuario no existe.");
+         }
         }
         
         
         public void QuitarUsuList(int idUsu, int cBoxPos, String nomUsu){  
         
-        ArrayList<Integer> idListAdmin = getIdListAdmin(idUsu);
+         ArrayList<Integer> idListAdmin = getIdListAdmin(idUsu);
         
          conectar();
          ResultSet rs = null;
          
-             try {    
-                    PreparedStatement pst = conexion.prepareStatement("SELECT id FROM usuarios WHERE nombre = ?"); 
-                    pst.setString(1, nomUsu);
-                    rs = pst.executeQuery();
-            
-                    rs.next();
-                    
-                    PreparedStatement pst2 = conexion.prepareStatement("DELETE FROM usu_list WHERE id_usu = ? AND id_list = ?"); 
-                    pst2.setInt(1, rs.getInt("id"));
-                    pst2.setInt(2, idListAdmin.get(cBoxPos));
-                    pst2.execute();    
+         try {    
+                PreparedStatement pst = conexion.prepareStatement("SELECT id FROM usuarios WHERE nombre = ?"); 
+                pst.setString(1, nomUsu);
+                rs = pst.executeQuery();
         
-             } catch (SQLException ex) {
+                rs.next();
+                
+                PreparedStatement pst2 = conexion.prepareStatement("DELETE FROM usu_list WHERE id_usu = ? AND id_list = ?"); 
+                pst2.setInt(1, rs.getInt("id"));
+                pst2.setInt(2, idListAdmin.get(cBoxPos));
+                pst2.execute();    
+    
+         } catch (SQLException ex) {
 
-                    Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
-                    JOptionPane.showMessageDialog(null, "Error al insertar nueva lista.");
-             }
+                Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
+                JOptionPane.showMessageDialog(null, "Error al insertar nueva lista.");
+         }
         }
         
         
@@ -801,22 +810,21 @@ public class Controlador {
          conectar();
          ResultSet rs = null;
          
-             try {    
-                    PreparedStatement pst = conexion.prepareStatement("UPDATE listas SET fecha_envio= ?, periodo = ?, vaciar = ? WHERE id = ?"); 
-                    pst.setString(1, fecha);
-                    pst.setInt(2, periodo);
-                    pst.setBoolean(3, vaciar);
-                    pst.setInt(4, idListAdmin.get(cBoxPos));
-                    pst.executeUpdate();  
- 
-                    JOptionPane.showMessageDialog(null, "Datos de envío actualizados.");
-        
-             } catch (SQLException ex) {
+         try {    
+                PreparedStatement pst = conexion.prepareStatement("UPDATE listas SET fecha_envio= ?, periodo = ?, vaciar = ? WHERE id = ?"); 
+                pst.setString(1, fecha);
+                pst.setInt(2, periodo);
+                pst.setBoolean(3, vaciar);
+                pst.setInt(4, idListAdmin.get(cBoxPos));
+                pst.executeUpdate();  
 
-                    Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
-                    JOptionPane.showMessageDialog(null, "Error al ctualizar datos de pedido.");
-             }
-        
+                JOptionPane.showMessageDialog(null, "Datos de envío actualizados.");
+    
+         } catch (SQLException ex) {
+
+                Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
+                JOptionPane.showMessageDialog(null, "Error al ctualizar datos de pedido.");
+         }        
         }
         
         
@@ -828,35 +836,34 @@ public class Controlador {
          conectar();
          ResultSet rs = null;
          
-             try {    
-                    PreparedStatement pst = conexion.prepareStatement("SELECT fecha_envio, periodo, vaciar FROM listas WHERE id = ?"); 
-                    pst.setInt(1, idListAdmin.get(cBoxPos));
-                    rs = pst.executeQuery();
-            
-                    rs.next();
-                    
-                    infoFecha.add(0, rs.getString("fecha_envio"));
-                    infoFecha.add(1, String.valueOf(rs.getInt("periodo")));
-                    infoFecha.add(2, String.valueOf(rs.getBoolean("vaciar")));
+         try {    
+                PreparedStatement pst = conexion.prepareStatement("SELECT fecha_envio, periodo, vaciar FROM listas WHERE id = ?"); 
+                pst.setInt(1, idListAdmin.get(cBoxPos));
+                rs = pst.executeQuery();
         
-             } catch (SQLException ex) {
+                rs.next();
+                
+                infoFecha.add(0, rs.getString("fecha_envio"));
+                infoFecha.add(1, String.valueOf(rs.getInt("periodo")));
+                infoFecha.add(2, String.valueOf(rs.getBoolean("vaciar")));
+    
+         } catch (SQLException ex) {
 
-                    Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
-                    JOptionPane.showMessageDialog(null, "Error al insertar nueva lista.");
-             }
-             return infoFecha;
+                Logger.getLogger(Controlador.class.getName()).log(Level.INFO, null, ex);
+                JOptionPane.showMessageDialog(null, "Error al insertar nueva lista.");
+         }
+         
+         return infoFecha;
         }
         
         
-        public ArrayPedidos CargarPedidos(int idUsu){
-        
+        public ArrayPedidos CargarPedidos(int idUsu){        
         
          ArrayPedidos ape = new ArrayPedidos();
          Pedido pe;
         
          conectar();
-         ResultSet rs,rs2 = null;
-         
+         ResultSet rs,rs2 = null;         
              
          try {         
              
@@ -880,13 +887,13 @@ public class Controlador {
                 ape.setPedido(pe);
             }
         
-             } catch (SQLException ex) {
+         } catch (SQLException ex) {
+
             Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
-            
-             JOptionPane.showMessageDialog(null, "Error al cargar tabla.");
-            }
+            JOptionPane.showMessageDialog(null, "Error al cargar tabla.");
+         }
          
-        return ape;
+         return ape;
         }
         
 }
